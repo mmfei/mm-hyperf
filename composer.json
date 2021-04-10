@@ -13,6 +13,7 @@
     "license": "Apache-2.0",
     "require": {
         "php": ">=7.3",
+        "96qbhy/hyperf-auth": "^2.3",
         "hyperf/async-queue": "~2.1.0",
         "hyperf/cache": "~2.1.0",
         "hyperf/command": "^2.1",
@@ -25,7 +26,7 @@
         "hyperf/framework": "~2.1.0",
         "hyperf/grpc-client": "~2.1.0",
         "hyperf/grpc-server": "~2.1.0",
-        "hyperf/guzzle": "~2.1.0",
+        "hyperf/guzzle": "^2.1",
         "hyperf/http-server": "~2.1.0",
         "hyperf/logger": "^2.1",
         "hyperf/memory": "~2.1.0",
@@ -39,9 +40,11 @@
         "hyperf/task": "^2.1",
         "hyperf/testing": "^2.1",
         "hyperf/tracer": "~2.1.0",
-        "hyperf/translation": "^2.1"
+        "hyperf/translation": "^2.1",
+        "hyperf/validation": "^2.1"
     },
     "require-dev": {
+        "filp/whoops": "^2.12",
         "friendsofphp/php-cs-fixer": "^2.14",
         "hyperf/devtool": "~2.1.0",
         "hyperf/watcher": "^2.1",
