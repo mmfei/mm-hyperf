@@ -11,9 +11,12 @@ declare(strict_types=1);
  */
 return [
     'handler' => [
+        // 这里对应您当前的 Server 名称
         'http' => [
             Hyperf\HttpServer\Exception\Handler\HttpExceptionHandler::class,
+            \App\Exception\Handler\MyValidationExceptionHandler::class,
             App\Exception\Handler\AppExceptionHandler::class,
+//            \Hyperf\ExceptionHandler\Handler\WhoopsExceptionHandler::class,
         ],
     ],
 ];
