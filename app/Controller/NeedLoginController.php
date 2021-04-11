@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Constants\ExceptionCode;
 use App\Model\User;
 use Hyperf\Cache\Annotation\Cacheable;
 use Hyperf\Di\Annotation\Inject;
@@ -40,5 +41,12 @@ class NeedLoginController extends AbstractController
             return User::find((int) $user_auth->getId());
         }
         return null;
+    }
+    protected function getCurrentUser($is_need_login = false) {
+        $user = self::currentUser();
+        if($is_need_login && empty($user)) {
+            throw new \OAuthException($this->translator->trans('error_trans.need_auth') , ExceptionCode::NEED_AUTH);
+        }
+        return $user;
     }
 }

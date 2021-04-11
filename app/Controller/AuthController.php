@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-use App\Utils\Log;
+use App\Constants\ExceptionCode;
 use App\Model\User;
 use App\Model\UserAuth;
 use App\Request\AuthRegistRequest;
@@ -33,45 +33,38 @@ class AuthController extends NeedLoginController
     {
         $email = $this->request->post('email');
         $password = $this->request->post('password');
-        Log::start(__METHOD__);
-        Log::debug($email);
-        Log::debug($password);
         if ($email && $password) {
+            $user = User::where(['name' => $email])->first();
+            if($user) {
+                throw new \ErrorException($this->translator->trans('error_trans.has_exists' , ['Name' => $email]) , ExceptionCode::IS_EXISTS);
+            }
             $result = User::insertOrIgnore(['name' => $email, 'nickname' => $email]);
             $user_id = 0;
             $user = null;
-            if($result) {
+            if ($result) {
                 $user = User::where(['name' => $email, 'nickname' => $email])->first();
-                if($user) {
-                    $user_id =(int) ($user->user_id);
+                if ($user) {
+                    $user_id = (int) ($user->user_id);
                 }
             } else {
                 $user = User::where(['name' => $email])->first();
-                if($user && $user->email == $email) {
-                    $user_id =(int) ($user->user_id);
+                if ($user && $user->email == $email) {
+                    $user_id = (int) ($user->user_id);
                 }
             }
-            Log::debug("user_id:".$user_id);
             if ($user_id > 0) {
-//                $user = User::find($user_id);
-
                 $user_auth = new UserAuth();
                 $user_auth->user_id = $user->user_id;
                 $user_auth->email = $email;
                 $user_auth->password = $password;
-                UserAuth::updateOrInsert(['user_id' => $user_id,] , ['email' => $email, 'password' => $password, 'token' => ''] );
+                UserAuth::updateOrInsert(['user_id' => $user_id], ['email' => $email, 'password' => $password, 'token' => '']);
                 $token = $this->auth->guard('jwt')->login($user_auth);
                 $user_auth = UserAuth::find($user->user_id);
                 $user_auth->token = $token;
                 $user_auth->save();
-                Log::end(__METHOD__.'token'.$token);
 
                 return $token;
-            } else {
-                Log::debug('user_id ???');
             }
-        } else {
-            Log::debug('faile');
         }
         return null;
     }

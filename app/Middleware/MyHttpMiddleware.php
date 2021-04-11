@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace App\Middleware;
 
 use App\Exception\MyHttpApiException;
-use App\Utils\Log;
 use Hyperf\HttpMessage\Stream\SwooleStream;
 use Hyperf\Utils\Codec\Json;
 use Hyperf\Utils\Context;
@@ -40,7 +39,12 @@ class MyHttpMiddleware implements MiddlewareInterface
         try {
             $code = 0;
             $response = $handler->handle($request);
-            $data = Json::decode($response->getBody()->getContents());
+            $c = $response->getBody()->getContents();
+            if ($c != '') {
+                $data = Json::decode($c);
+            } else {
+                $data = $c;
+            }
         } catch (MyHttpApiException $e) {
             $code = $e->getCode();
             $data = $e->getMessage();

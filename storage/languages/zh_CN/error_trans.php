@@ -9,12 +9,7 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace App\Exception;
-
-use App\Constants\ErrorCode;
-use Hyperf\Server\Exception\ServerException;
-use Throwable;
-
-class MyHttpApiException extends ServerException
-{
-}
+return [
+    'has_exists' => ':Name 已经存在!!!',
+    'need_auth' => '请先登录.',
+];
