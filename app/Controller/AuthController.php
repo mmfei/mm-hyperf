@@ -24,6 +24,7 @@ use Qbhy\HyperfAuth\Annotation\Auth;
  */
 class AuthController extends NeedLoginController
 {
+    const AUTH_TYPE = 'jwt';
     public function index()
     {
         return $this->response->raw('Hello Hyperf!');
@@ -58,7 +59,7 @@ class AuthController extends NeedLoginController
                 $user_auth->email = $email;
                 $user_auth->password = $password;
                 UserAuth::updateOrInsert(['user_id' => $user_id], ['email' => $email, 'password' => $password, 'token' => '']);
-                $token = $this->auth->guard('jwt')->login($user_auth);
+                $token = $this->auth->guard(self::AUTH_TYPE)->login($user_auth);
                 $user_auth = UserAuth::find($user->user_id);
                 $user_auth->token = $token;
                 $user_auth->save();
@@ -81,7 +82,8 @@ class AuthController extends NeedLoginController
                 $auth = UserAuth::retrieveById($user_auth->user_id);
 
                 $return = [
-                    'status' => $this->auth->guard('jwt')->login($auth),
+                    'token' => $this->auth->guard(self::AUTH_TYPE)->login($auth),
+                    'id' => $auth->getId(),
                 ];
             }
         }
@@ -90,7 +92,7 @@ class AuthController extends NeedLoginController
 
     public function logout()
     {
-        $this->auth->guard('jwt')->logout();
+        $this->auth->guard(self::AUTH_TYPE)->logout();
         return 'logout ok';
     }
 
@@ -101,7 +103,11 @@ class AuthController extends NeedLoginController
      */
     public function user()
     {
-        $user_auth = $this->auth->guard('jwt')->user();
-        return 'hello ' . $user_auth->email;
+        $user_auth = $this->auth->guard(self::AUTH_TYPE)->user();
+        $return = [];
+        if($user_auth) {
+            $return = User::find($user_auth->getId());
+        }
+        return $return;
     }
 }

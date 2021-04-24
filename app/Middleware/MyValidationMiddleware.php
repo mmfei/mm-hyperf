@@ -11,7 +11,6 @@ declare(strict_types=1);
  */
 namespace App\Middleware;
 
-use App\Exception\MyHttpApiException;
 use Hyperf\HttpMessage\Stream\SwooleStream;
 use Hyperf\Utils\Codec\Json;
 use Hyperf\Utils\Context;

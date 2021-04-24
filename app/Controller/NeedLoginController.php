@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Constants\ExceptionCode;
 use App\Model\User;
 use Hyperf\Cache\Annotation\Cacheable;
+use Hyperf\Contract\TranslatorInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\AutoController;
 use Qbhy\HyperfAuth\Annotation\Auth;

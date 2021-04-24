@@ -28,7 +28,7 @@ class MyValidationExceptionHandler extends WhoopsExceptionHandler
             'message' => $throwable->getMessage(),
             'time' => time(),
             'data' => null,
-        ], JSON_UNESCAPED_UNICODE);
+        ], \JSON_UNESCAPED_UNICODE);
 
         $this->stopPropagation();
         // 阻止异常冒泡
