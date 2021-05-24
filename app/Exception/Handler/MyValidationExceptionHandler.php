@@ -32,7 +32,7 @@ class MyValidationExceptionHandler extends WhoopsExceptionHandler
 
         $this->stopPropagation();
         // 阻止异常冒泡
-        return $response->withStatus(500)->withHeader('content-type','application/json')->withBody(new SwooleStream($data));
+        return $response->withStatus(500)->withHeader('content-type', 'application/json')->withBody(new SwooleStream($data));
     }
 
     public function isValid(Throwable $throwable): bool

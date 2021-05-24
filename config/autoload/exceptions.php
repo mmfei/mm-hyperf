@@ -16,7 +16,7 @@ return [
             Hyperf\HttpServer\Exception\Handler\HttpExceptionHandler::class,
             \App\Exception\Handler\MyValidationExceptionHandler::class,
             App\Exception\Handler\AppExceptionHandler::class,
-//            \Hyperf\ExceptionHandler\Handler\WhoopsExceptionHandler::class,
+            //            \Hyperf\ExceptionHandler\Handler\WhoopsExceptionHandler::class,
         ],
     ],
 ];

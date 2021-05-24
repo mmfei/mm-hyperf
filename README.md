@@ -14,5 +14,9 @@ class AController extends NeedLoginController {
 
 # 输出
 ```json
-
+{
+    "code": 999,
+    "data": "test1",
+    "time": 1621841693
+}
 ```

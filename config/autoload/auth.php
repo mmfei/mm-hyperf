@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 /**
- * This file is part of qbhy/hyperf-auth.
+ * This file is part of Hyperf.
  *
- * @link     https://github.com/qbhy/hyperf-auth
- * @document https://github.com/qbhy/hyperf-auth/blob/master/README.md
- * @contact  qbhy0715@qq.com
- * @license  https://github.com/qbhy/hyperf-auth/blob/master/LICENSE
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 use Qbhy\SimpleJwt\Encoders;
 use Qbhy\SimpleJwt\EncryptAdapters as Encrypter;
-
 
 return [
     'default' => [
@@ -28,7 +27,7 @@ return [
             * 必填
             * jwt 服务端身份标识
             */
-            'secret' => env('SIMPLE_JWT_SECRET' , 'project_dev_com'),
+            'secret' => env('SIMPLE_JWT_SECRET', 'project_dev_com'),
 
             /*
              * 可选配置

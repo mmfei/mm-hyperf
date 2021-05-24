@@ -43,7 +43,7 @@ class AppExceptionHandler extends ExceptionHandler
             'data' => null,
         ], JSON_UNESCAPED_UNICODE);
         $string = new SwooleStream($data);
-        return $response->withHeader('Server', 'Hyperf')->withHeader('content-type','application/json')->withStatus(500)->withBody($string);
+        return $response->withHeader('Server', 'Hyperf')->withHeader('content-type', 'application/json')->withStatus(500)->withBody($string);
     }
 
     public function isValid(Throwable $throwable): bool
