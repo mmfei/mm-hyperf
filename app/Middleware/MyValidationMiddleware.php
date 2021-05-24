@@ -16,20 +16,17 @@ use Hyperf\Utils\Codec\Json;
 use Hyperf\Utils\Context;
 use Hyperf\Validation\Middleware\ValidationMiddleware;
 use Hyperf\Validation\ValidationException;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class MyValidationMiddleware extends ValidationMiddleware
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-
         try {
-            return parent::process($request , $handler);
+            return parent::process($request, $handler);
         } catch (ValidationException $e) {
             $content = [
                 'code' => 400,

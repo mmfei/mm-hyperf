@@ -11,7 +11,6 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-use App\Model\User;
 use Hyperf\Contract\TranslatorInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
@@ -45,8 +44,10 @@ abstract class AbstractController
      * @var TranslatorInterface
      */
     protected $translator;
-    public function __construct() {
-        $this->language = $this->request->input('language' , env('locale' , 'zh_CN'));
+
+    public function __construct()
+    {
+        $this->language = $this->request->input('language', env('locale', 'zh_CN'));
         $this->translator->setLocale($this->language);
     }
 }

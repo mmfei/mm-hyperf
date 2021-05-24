@@ -25,6 +25,7 @@ use Qbhy\HyperfAuth\Annotation\Auth;
 class AuthController extends NeedLoginController
 {
     const AUTH_TYPE = 'jwt';
+
     public function index()
     {
         return $this->response->raw('Hello Hyperf!');
@@ -36,8 +37,8 @@ class AuthController extends NeedLoginController
         $password = $this->request->post('password');
         if ($email && $password) {
             $user = User::where(['name' => $email])->first();
-            if($user) {
-                throw new \ErrorException($this->translator->trans('error_trans.has_exists' , ['Name' => $email]) , ExceptionCode::IS_EXISTS);
+            if ($user) {
+                throw new \ErrorException($this->translator->trans('error_trans.has_exists', ['Name' => $email]), ExceptionCode::IS_EXISTS);
             }
             $result = User::insertOrIgnore(['name' => $email, 'nickname' => $email]);
             $user_id = 0;
@@ -105,7 +106,7 @@ class AuthController extends NeedLoginController
     {
         $user_auth = $this->auth->guard(self::AUTH_TYPE)->user();
         $return = [];
-        if($user_auth) {
+        if ($user_auth) {
             $return = User::find($user_auth->getId());
         }
         return $return;

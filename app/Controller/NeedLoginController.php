@@ -14,7 +14,6 @@ namespace App\Controller;
 use App\Constants\ExceptionCode;
 use App\Model\User;
 use Hyperf\Cache\Annotation\Cacheable;
-use Hyperf\Contract\TranslatorInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\AutoController;
 use Qbhy\HyperfAuth\Annotation\Auth;
@@ -43,10 +42,12 @@ class NeedLoginController extends AbstractController
         }
         return null;
     }
-    protected function getCurrentUser($is_need_login = false) {
+
+    protected function getCurrentUser($is_need_login = false)
+    {
         $user = self::currentUser();
-        if($is_need_login && empty($user)) {
-            throw new \OAuthException($this->translator->trans('error_trans.need_auth') , ExceptionCode::NEED_AUTH);
+        if ($is_need_login && empty($user)) {
+            throw new \OAuthException($this->translator->trans('error_trans.need_auth'), ExceptionCode::NEED_AUTH);
         }
         return $user;
     }

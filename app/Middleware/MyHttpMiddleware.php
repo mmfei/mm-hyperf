@@ -41,8 +41,8 @@ class MyHttpMiddleware implements MiddlewareInterface
             $response = $handler->handle($request);
             $c = $response->getBody()->getContents();
             if ($c != '') {
-                $data = \json_decode($c , true);
-                if(is_null($data)) {
+                $data = \json_decode($c, true);
+                if (is_null($data)) {
                     $data = $c;
                 }
             } else {
