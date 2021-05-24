@@ -28,4 +28,7 @@ class UserController extends NeedLoginController
     {
         throw new \App\Exception\Handler\MyHttpApiException('test1', 999);
     }
+    public function success() {
+        return ['a' => 'success',];
+    }
 }

@@ -9,14 +9,27 @@ class AController extends NeedLoginController {
     public function test() {
         throw new \App\Exception\Handler\MyHttpApiException('test1',999);
     }
+    public function success() {
+        return ['a' => 'success',];
+    }
 }
 ```
 
-# 输出
+# 输出 my
 ```json
 {
-    "code": 999,
-    "data": "test1",
-    "time": 1621841693
+  "code": 999,
+  "data": "test1",
+  "time": 1621841693
+}
+```
+# 输出 success
+```json
+{
+  "code": 0,
+  "data": {
+    "a": "success"
+  },
+  "time": 1621843407
 }
 ```
