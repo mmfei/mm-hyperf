@@ -2,6 +2,8 @@
 
 * language支持 [https://hyperf.wiki/2.0/#/zh-cn/translation](https://hyperf.wiki/2.0/#/zh-cn/translation)
 * auth支持 [https://github.com/96qbhy/hyperf-auth](https://github.com/96qbhy/hyperf-auth)
+* 验证器 [https://github.com/hyperf/validation](https://github.com/hyperf/validation)
+* 国际化[https://github.com/hyperf/translation](https://github.com/hyperf/translation)
 * 统一json的api
 
 ```php
